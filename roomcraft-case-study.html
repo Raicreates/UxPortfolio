@@ -737,10 +737,12 @@
       .ps-action-row{display:flex;gap:6px;margin-top:auto;}
       /* annotations */
       .proto-steps{flex:1;min-width:200px;display:flex;flex-direction:column;gap:20px;}
-      .proto-step{display:flex;gap:14px;align-items:flex-start;opacity:.35;transition:opacity .4s;}
-      .proto-step.active{opacity:1;}
-      .proto-step-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#2a2a2a;line-height:1;flex-shrink:0;transition:color .4s;}
+      .proto-step{display:flex;gap:14px;align-items:flex-start;opacity:.3;transition:opacity .3s,background .3s;padding:12px;border-radius:6px;border:1px solid transparent;}
+      .proto-step:hover{opacity:.75;border-color:#1e1e1e;background:rgba(255,255,255,.02);}
+      .proto-step.active{opacity:1;border-color:rgba(255,77,28,.25);background:rgba(255,77,28,.03);}
+      .proto-step-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#2a2a2a;line-height:1;flex-shrink:0;transition:color .3s;}
       .proto-step-num.active{color:var(--accent);}
+      .proto-step:hover .proto-step-num{color:#3a3a3a;}
       .proto-step-title{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:4px;}
       .proto-step-desc{font-size:.8rem;color:var(--muted);line-height:1.6;}
     </style>
@@ -767,7 +769,7 @@
           current = n;
         }
 
-        // Wire up CTA buttons
+        // CTA buttons inside phone still work
         var c1=document.getElementById('ctaS1'); if(c1){ c1.addEventListener('click',function(){ goTo(1); }); }
         var c2=document.getElementById('ctaS2'); if(c2){ c2.addEventListener('click',function(){ goTo(2); }); }
 
@@ -780,10 +782,15 @@
           }); }
         });
 
-        // Auto-advance every 3.5s
-        setInterval(function(){
-          goTo((current + 1) % 3);
-        }, 3500);
+        // Step annotations — hover to preview, click to lock
+        [0,1,2].forEach(function(i){
+          var step = document.getElementById(steps[i]);
+          if(step){
+            step.style.cursor = 'pointer';
+            step.addEventListener('mouseenter', function(){ goTo(i); });
+            step.addEventListener('click', function(){ goTo(i); });
+          }
+        });
 
         goTo(0);
       })();
