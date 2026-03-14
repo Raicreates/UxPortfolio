@@ -773,7 +773,7 @@
     <h2 class="contact-big">Let's<br>Build<br><span class="highlight">Together</span></h2>
     <p class="contact-sub">I'm open to new opportunities, freelance projects, and interesting collaborations.</p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#95f0e0e5fde7f4fcf8fcf4d5f2f8f4fcf9bbf6faf8" class="contact-link"><span class="dot"></span> <span class="__cf_email__" data-cfemail="a7c2d2d7cfd5c6cecacec6e7c0cac6cecb89c4c8ca">[email&#160;protected]</span></a>
+
       <a href="your-cv.pdf" target="_blank" class="contact-link"><span class="dot"></span> Read.cv</a>
     </div>
   </div>
@@ -851,7 +851,7 @@
     const message = document.querySelector(".form-textarea").value;
     const subject = encodeURIComponent("Portfolio Enquiry from " + name);
     const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message);
-    window.location.href = "mailto:euphraimia@gmail.com?subject=" + subject + "&body=" + body;
+    window.location.href = "mailto:?subject=" + subject + "&body=" + body;
   }
 
   // Safety fallback: show any reveals still hidden after 2s
